@@ -1,22 +1,30 @@
-# ForeverTracking
+# Forever Tracking
 
-<p align="center"><img src="media/logo.png" width="160" alt="ForeverTracking radar logo"></p>
+<p align="center"><img src="media/logo.png" width="160" alt="Forever Tracking radar logo"></p>
 
-Keeps Find Herbs or Find Minerals tracking active across zoning, UI reloads,
-death, and resurrection on the WoW Forever beta client.
+**Track herbs or minerals - not the toggle.**
 
-## Behavior
+Forever Tracking remembers your active **Find Herbs** or **Find Minerals**
+choice and brings it back after a login, UI reload, zone change, or resurrection.
+Turn tracking off whenever you like; it stays off until you select either one
+again.
 
-- Remembers the last active tracking spell per character in `ForeverTrackingDB`.
-- Restores that spell after entering the world, changing zones, dying, or
-  resurrecting.
-- On first use, selects Find Herbs when available, otherwise Find Minerals.
-- Turning off herb/mineral tracking disables automatic restoration. Selecting
-  either tracking spell again re-enables it.
-- Does nothing when neither tracking spell is available.
+## Features
 
-The addon uses the locale-independent spell IDs 2383 (Find Herbs) and 2580
-(Find Minerals), with the client's `C_Minimap` tracking API.
+- **Remembers your pick:** Saves the last active tracking spell per character.
+- **Handles the interruptions:** Restores it after login, reloads, zoning,
+  death, and resurrection.
+- **Respects your choice:** Turning tracking off pauses automatic restores;
+  selecting Find Herbs or Find Minerals again resumes them.
+- **Works in any language:** Identifies spells by ID, not translated names.
+- **Stays lightweight:** No settings, slash commands, or dependencies. Does
+  nothing if neither tracking ability is available.
+
+## How to use it
+
+Enable the addon and play as usual. On first use, it selects Find Herbs when
+available, otherwise Find Minerals. After that, it remembers whichever
+supported tracking spell you use.
 
 ## Installation
 
