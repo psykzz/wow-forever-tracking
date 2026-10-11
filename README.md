@@ -41,10 +41,11 @@ luacheck ForeverTracking.lua
 
 GitHub Actions runs these checks on pushes to `main` and pull requests. To
 publish a release to CurseForge project `1738956`, configure the
-`CF_API_TOKEN` repository secret with an authorized CurseForge API token, then
-push a `v*` semantic-version tag. BigWigs Packager creates the GitHub release
-and uploads the addon to CurseForge. GitHub publishing uses the workflow's
-`GITHUB_TOKEN`.
+`CURSEFORGE_API_TOKEN` repository secret with an authorized CurseForge API
+token, then push a `v*` semantic-version tag. BigWigs Packager creates the
+GitHub release and uploads the addon to CurseForge. The workflow maps that
+secret to the `CF_API_TOKEN` variable expected by the packager. GitHub
+publishing uses the workflow's `GITHUB_TOKEN`.
 
 In game, test both professions: switch between Find Herbs and Find Minerals,
 turn either off, then test zoning, reload, death, and resurrection. Turning off
