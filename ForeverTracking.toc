@@ -1,0 +1,10 @@
+## Interface: 16001
+## Title: Forever Tracking
+## Notes: Remembers and restores your last herb or mineral tracking selection.
+## Author: PsyKzz
+## Version: @project-version@
+## Category: Professions
+## X-Curse-Project-ID: 1738956
+## SavedVariablesPerCharacter: ForeverTrackingDB
+
+ForeverTracking.lua

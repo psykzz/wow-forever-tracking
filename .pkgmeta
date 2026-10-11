@@ -1,0 +1,12 @@
+package-as: ForeverTracking
+
+enable-nolib-creation: no
+
+ignore:
+  - .github
+  - .gitignore
+  - .luacheckrc
+  - AGENTS.md
+  - README.md
+
+license-output: LICENSE.txt
