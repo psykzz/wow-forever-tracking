@@ -8,5 +8,6 @@ ignore:
   - .luacheckrc
   - AGENTS.md
   - README.md
+  - media
 
 license-output: LICENSE.txt

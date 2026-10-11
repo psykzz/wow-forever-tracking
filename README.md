@@ -1,5 +1,7 @@
 # ForeverTracking
 
+<p align="center"><img src="media/logo.png" width="160" alt="ForeverTracking radar logo"></p>
+
 Keeps Find Herbs or Find Minerals tracking active across zoning, UI reloads,
 death, and resurrection on the WoW Forever beta client.
 
@@ -47,6 +49,9 @@ and uploads the addon to CurseForge. GitHub publishing uses the workflow's
 In game, test both professions: switch between Find Herbs and Find Minerals,
 turn either off, then test zoning, reload, death, and resurrection. Turning off
 tracking should remain off through those transitions.
+
+The 512 × 512 `media/logo.png` is project artwork for CurseForge and is excluded
+from the in-game addon package.
 
 ## License
 
