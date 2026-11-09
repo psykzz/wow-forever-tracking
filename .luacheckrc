@@ -4,6 +4,7 @@ read_globals = {
     "C_Minimap",
     "C_Timer",
     "CreateFrame",
+    "UnitIsDeadOrGhost",
 }
 
 globals = {

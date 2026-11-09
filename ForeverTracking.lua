@@ -1,6 +1,7 @@
 -- Keeps the last selected herb or mineral tracking active across world
 -- transitions, reloads, death, and resurrection.
 
+local ADDON_NAME = ...
 local FIND_HERBS_SPELL_ID = 2383
 local FIND_MINERALS_SPELL_ID = 2580
 local SAVED_DATA_VERSION = 1
@@ -15,20 +16,24 @@ local TRACKING_SPELLS = {
     [FIND_MINERALS_SPELL_ID] = true,
 }
 
-if type(ForeverTrackingDB) ~= "table"
-    or ForeverTrackingDB.version ~= SAVED_DATA_VERSION then
-    ForeverTrackingDB = {
-        version = SAVED_DATA_VERSION,
-        enabled = true,
-    }
-end
+local settings
 
-local settings = ForeverTrackingDB
-if type(settings.enabled) ~= "boolean" then
-    settings.enabled = true
-end
-if not TRACKING_SPELLS[settings.lastSpellID] then
-    settings.lastSpellID = nil
+local function InitializeSettings()
+    if type(ForeverTrackingDB) ~= "table"
+        or ForeverTrackingDB.version ~= SAVED_DATA_VERSION then
+        ForeverTrackingDB = {
+            version = SAVED_DATA_VERSION,
+            enabled = true,
+        }
+    end
+
+    settings = ForeverTrackingDB
+    if type(settings.enabled) ~= "boolean" then
+        settings.enabled = true
+    end
+    if not TRACKING_SPELLS[settings.lastSpellID] then
+        settings.lastSpellID = nil
+    end
 end
 
 local function FindTrackingIndex(spellID)
@@ -47,7 +52,7 @@ local function GetActiveTrackingState()
 
     for index = 1, C_Minimap.GetNumTrackingTypes() do
         local info = C_Minimap.GetTrackingInfo(index)
-        if info and info.active then
+        if info and info.active and info.spellID then
             hasActiveTracking = true
             if TRACKING_SPELLS[info.spellID] then
                 activeSpellID = info.spellID
@@ -98,6 +103,10 @@ local function EnsureTracking()
 end
 
 local function RestoreTracking()
+    if UnitIsDeadOrGhost("player") then
+        return
+    end
+
     if RememberActiveTracking() then
         return
     end
@@ -135,9 +144,12 @@ local function HandleTrackingUpdate()
     end
 
     trackingUpdatePending = true
-    C_Timer.After(0, function()
+    local generation = lifecycleGeneration
+    -- Tracking can clear before PLAYER_DEAD and the dead/ghost flag updates.
+    C_Timer.After(0.5, function()
         trackingUpdatePending = false
-        if lifecyclePending then
+        if lifecyclePending or generation ~= lifecycleGeneration
+            or UnitIsDeadOrGhost("player") then
             return
         end
 
@@ -148,6 +160,7 @@ local function HandleTrackingUpdate()
 end
 
 local frame = CreateFrame("Frame")
+frame:RegisterEvent("ADDON_LOADED")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 frame:RegisterEvent("PLAYER_DEAD")
@@ -155,8 +168,15 @@ frame:RegisterEvent("PLAYER_ALIVE")
 frame:RegisterEvent("PLAYER_UNGHOST")
 frame:RegisterEvent("MINIMAP_UPDATE_TRACKING")
 
-frame:SetScript("OnEvent", function(_, event)
-    if event == "MINIMAP_UPDATE_TRACKING" then
+frame:SetScript("OnEvent", function(self, event, loadedAddonName)
+    if event == "ADDON_LOADED" then
+        if loadedAddonName == ADDON_NAME then
+            InitializeSettings()
+            self:UnregisterEvent("ADDON_LOADED")
+        end
+    elseif not settings then
+        return
+    elseif event == "MINIMAP_UPDATE_TRACKING" then
         HandleTrackingUpdate()
     elseif event == "PLAYER_ENTERING_WORLD" or event == "ZONE_CHANGED_NEW_AREA" then
         ScheduleRestore(2)
