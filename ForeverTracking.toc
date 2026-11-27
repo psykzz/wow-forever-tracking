@@ -1,6 +1,6 @@
 ## Interface: 16001
 ## Title: Forever Tracking
-## Notes: Remembers and restores your last herb or mineral tracking selection.
+## Notes: Remembers and restores your last resource or creature tracking selection.
 ## Author: PsyKzz
 ## Version: @project-version@
 ## Category: Professions

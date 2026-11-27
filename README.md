@@ -2,12 +2,12 @@
 
 <p align="center"><img src="media/logo.png" width="160" alt="Forever Tracking radar logo"></p>
 
-**Track herbs or minerals - not the toggle.**
+**Track what you want - not the toggle.**
 
-Forever Tracking remembers your active **Find Herbs** or **Find Minerals**
-choice and brings it back after a login, UI reload, zone change, or resurrection.
-Turn tracking off whenever you like; it stays off until you select either one
-again.
+Forever Tracking remembers your active **Find Herbs**, **Find Minerals**,
+Dwarven **Find Treasure**, or Hunter tracking choice and brings it back after a
+login, UI reload, zone change, or resurrection. Turn tracking off whenever you
+like; it stays off until you select a supported tracking ability again.
 
 ## Features
 
@@ -15,7 +15,7 @@ again.
 - **Handles the interruptions:** Restores it after login, reloads, zoning,
   death, and resurrection.
 - **Respects your choice:** Turning tracking off pauses automatic restores;
-  selecting Find Herbs or Find Minerals again resumes them.
+  selecting a supported tracking ability again resumes them.
 - **Works in any language:** Identifies spells by ID, not translated names.
 - **Stays lightweight:** No settings, slash commands, or dependencies. Does
   nothing if neither tracking ability is available.
@@ -23,8 +23,8 @@ again.
 ## How to use it
 
 Enable the addon and play as usual. On first use, it selects Find Herbs when
-available, otherwise Find Minerals. After that, it remembers whichever
-supported tracking spell you use.
+available, otherwise Find Minerals, Find Treasure, or a Hunter tracking ability.
+After that, it remembers whichever supported tracking spell you use.
 
 ## Installation
 
@@ -55,9 +55,10 @@ GitHub release and uploads the addon to CurseForge. The workflow maps that
 secret to the `CF_API_TOKEN` variable expected by the packager. GitHub
 publishing uses the workflow's `GITHUB_TOKEN`.
 
-In game, test both professions: switch between Find Herbs and Find Minerals,
-turn either off, then test zoning, reload, death, and resurrection. Turning off
-tracking should remain off through those transitions.
+In game, test Find Herbs, Find Minerals, Dwarven Find Treasure, and the Hunter
+tracking abilities: switch between available choices, turn tracking off, then
+test zoning, reload, death, and resurrection. Turning off tracking should
+remain off through those transitions.
 
 The 512 × 512 `media/logo.png` is project artwork for CurseForge and is excluded
 from the in-game addon package.

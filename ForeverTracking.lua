@@ -1,19 +1,46 @@
--- Keeps the last selected herb or mineral tracking active across world
+-- Keeps the last selected resource or creature tracking active across world
 -- transitions, reloads, death, and resurrection.
 
 local ADDON_NAME = ...
 local FIND_HERBS_SPELL_ID = 2383
 local FIND_MINERALS_SPELL_ID = 2580
+local FIND_TREASURE_SPELL_ID = 2481
+local TRACK_BEASTS_SPELL_ID = 1494
+local TRACK_DEMONS_SPELL_ID = 19878
+local TRACK_DRAGONKIN_SPELL_ID = 19879
+local TRACK_ELEMENTALS_SPELL_ID = 19880
+local TRACK_GIANTS_SPELL_ID = 19882
+local TRACK_HUMANOIDS_SPELL_ID = 19883
+local TRACK_UNDEAD_SPELL_ID = 19884
+local TRACK_HIDDEN_SPELL_ID = 19885
 local SAVED_DATA_VERSION = 1
 
 local TRACKING_SPELL_ORDER = {
     FIND_HERBS_SPELL_ID,
     FIND_MINERALS_SPELL_ID,
+    FIND_TREASURE_SPELL_ID,
+    TRACK_BEASTS_SPELL_ID,
+    TRACK_DEMONS_SPELL_ID,
+    TRACK_DRAGONKIN_SPELL_ID,
+    TRACK_ELEMENTALS_SPELL_ID,
+    TRACK_GIANTS_SPELL_ID,
+    TRACK_HUMANOIDS_SPELL_ID,
+    TRACK_UNDEAD_SPELL_ID,
+    TRACK_HIDDEN_SPELL_ID,
 }
 
 local TRACKING_SPELLS = {
     [FIND_HERBS_SPELL_ID] = true,
     [FIND_MINERALS_SPELL_ID] = true,
+    [FIND_TREASURE_SPELL_ID] = true,
+    [TRACK_BEASTS_SPELL_ID] = true,
+    [TRACK_DEMONS_SPELL_ID] = true,
+    [TRACK_DRAGONKIN_SPELL_ID] = true,
+    [TRACK_ELEMENTALS_SPELL_ID] = true,
+    [TRACK_GIANTS_SPELL_ID] = true,
+    [TRACK_HUMANOIDS_SPELL_ID] = true,
+    [TRACK_UNDEAD_SPELL_ID] = true,
+    [TRACK_HIDDEN_SPELL_ID] = true,
 }
 
 local settings
